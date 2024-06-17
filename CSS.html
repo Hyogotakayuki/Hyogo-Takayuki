@@ -1,0 +1,230 @@
+<!DOCTYPE html>           <!--CSS.html-->
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>CSS</title>
+    <link rel="stylesheet" href="CSS.css">
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+       CSS{    }
+      </div>
+      <div class="menu">
+          <p><a href="https://ejje.weblio.jp/sentence/"
+        target="_brank"
+         rel="noopener norefarrer"
+         class="weblio">
+          　blio　</a></p>
+          <p><a href="#bottom-section"
+         class="sitahe">
+        　下へ　</a></p>
+          <p><a href="HTML.html"
+         class="html">
+         　html　</a></p>
+          <p><a href="Kigo.html"
+         class="mark">
+        　記号　</a></p>
+        <p><a href="java.html" 
+          class="java">
+          Java</a></p>
+      </div>
+    </header>
+    <div class="main">
+    <table class="table-margin">
+        <tr>
+         <th>記号</th><th>意味</th><th>利用例</th>
+        </tr>
+        <tr>
+         <th>{}波カッコ<br>中カッコ</th><td>デザインの指定方法を波カッコの中に書く。</td><td></td></tr>
+        <tr>
+         <th>.先頭ドット</th><td>htmlで書いたclassに対してcssでは.ドットで表す。</td><td></td></tr>
+        <tr>
+         <th>#シャープ</th><td>色番号の先頭につける。</td><td></td>
+        </tr>
+        <tr>
+         <th>: ; コロン セミコロン</th><td>色番号を#の後に色番号を付ける。</td><td>: #ffffff;のように囲む。</td>
+        <tr>
+         <th>/*  */<br>スラッシュ米　米スラッシュ</th><td>cssの宣言文を書く<br>CSSでコメントを書くときに使う</td><td>／＊stylesheet<br>.css＊／</td>
+        </tr>
+       </table>
+      <table>
+       <tr><th>／＊styesheet.css＊／</th>
+        <td>cssの宣言文</td>
+        </tr>
+        <tr>
+        <th>class="名前"<br>クラス</th>
+        <td>div要素に名前を付けてcssで加工
+          できるようにする</td>
+       </tr>
+        <tr>
+        <th>color: #赤緑青;<br>カラー</th>
+        <td>文字の色を決める</td>
+        </tr>
+       <tr>
+        <th>font-size: px;
+          <br>フォント-サイズ</th>
+          <td>文字の大きさを決める</td>
+        </tr>
+        <tr>
+        <th>font-family: ;
+          <br>フォント-ファミリー</th>
+          <td>文字の書体を決める</td>
+        </tr>
+        <tr>
+        <th>background-color: rgb;
+          <br>バックグランド-カラー</th>
+          <td>ブロック要素の背景色を決める</td>
+        </tr>
+        <tr>
+          <th>width<br>ウイス</th>
+          <td>横幅を決める</td>
+        </tr>
+        <tr>
+          <th>height<br>ハイト</th>
+          <td>高さを決める</td>
+        </tr>
+          <th>text-align<br>テキストアライン</th>
+          <td>text-align: center;
+          <br>要素の配置を右、左、中央に指定</td>
+        </tr>
+        <tr>
+          <th>line-height<br>ラインハイト</th>
+          <td>line-height: 90px;<br>
+          バックグランドの上下の真ん中に文字を寄せる</td>
+        </tr>
+          <tr>
+          <th>list-style: ;<br>リストスタイル</th>
+          <td>リストに・や数を表示させるかさせないか
+          決める<br>表示させない: none;</td>
+        </tr>
+        <tr>
+          <th>padding: ;<br>パディング</th>
+          <td>borderの内側にスペースを作る</td>
+        </tr>
+        <tr>
+          <th>margin: ;<br>マージン</th>
+          <td>borderの外周にスペースを作る</td>
+        </tr>
+        <tr>
+          <th>margin: 0 auto;<br>マージン０auto</th>
+          <td>ヘッダーなど大きなブロックを中央に配置</td>
+        </tr>
+          <th>border: ;<br>ボーダー</th>
+          <td>文字やブロック要素の外周に線を付ける</td>
+        </tr>
+        <tr>
+          <th>-top<br>トップ</th><td>上</td>
+          <tr>
+          <th>-right<br>ライト</th><td>右</td>
+        </tr>
+        <tr>
+          <th>-left<br>レフト</th><td>左</td>
+          <tr>
+          <th>-bottom<br>ボトム</th><td>下</td>
+        </tr>
+          <th>float: ;<br>フロート</th>
+          <td>リストなどを横並びにする</td>
+        <tr>
+        <th>background-color<br>: rgba(赤,緑,青,透明度);
+          <br>アールジービーエー</th>
+          <td>カラーと透明度を指定</td>
+        </tr>
+        <tr>
+          <th>opacity<br>オパシティー</th>
+          <td>文字と背景（ブロック要素）の透明度
+            を指定する</td>
+        </tr>
+        <tr>
+          <th>,<br>カンマ区切り</th><td>３つ以上の要素を指定するとき<br>親要素から順にカンマを２つ加える<br>table, tr, th, td {
+            border-collapse: collapse;
+            border: 1px solid green;
+            width: 600px; }</td>
+        </tr>
+          <th>border-collapse<br>ボーダークラップス</th>
+          <td>border-collapse: collapse;
+            <br>表を作るときこれを使うと、
+            余計な線が消える。</td>
+        </tr>
+        <tr>
+          <th>letter-spacing
+          <br>レタースペーシング</th>
+          <td>文字間隔をあける
+            <br>letter-spacing: 5px;</td>
+        </tr>
+        <tr>
+          <th>hover<br>ホバー</th>
+          <td>リンク文字にカーソルが乗った時に
+          変化を付ける<br>
+          .btn:hover ｛　opacity: 1;　｝
+          <br>カーソルが乗った時に透明にする</td>
+        </tr>
+        <tr>
+          <th>transition<br>トランシション</th>
+          <td>変化や動きを付ける<br>transition: all 1s; 
+          カーソルが乗った時
+          <br>1秒間に背景色やフォントが指定
+          した値に変化していく</td>
+        </tr>
+        <tr>
+          <th>font-weight<br>フォントウェエイト</th>
+          <td>文字の太さを指定。: bold;<strong>太字<br>
+          </strong>: normar;＜h1＞などの太字が細字になる<br>
+            英字と日本語では太さが揃わない</td>
+        </tr>
+        <tr>
+          <th>position: relative;<br>ポジションリラティブ</th>
+          <td>position: relative;基準点を画面左上に設定し、<br>
+            topから10px,leftから10pxの位置に移動</td>
+        </tr>
+        <tr>
+          <th>absolute<br>アブソリュート</th>
+          <td>指定した親要素の左上に基準点移し、<br>
+            そこからの移動</td>
+        </tr>
+        <tr>
+          <th><br></th>
+          <td></td>
+        </tr>
+        <tr>
+          <th><br></th>
+          <td></td>
+        </tr>
+        <tr>
+          <th><br></th>
+          <td></td>
+        </tr>
+        <tr>
+          <th><br></th>
+          <td></td>
+        </tr>
+        <tr>
+          <th><br></th>
+          <td></td>
+        </tr>
+      </table>
+      <p id="bottom-section"></p>
+    </div>
+    <footer>
+      <div class="menu">
+        <p><a href="https://ejje.weblio.jp/sentence/"
+         class="weblio"
+          target="_blank"
+           rel="noopener noreferrer">
+           　blio　</a></p>
+        <p><a href="CSS.html"
+         class="uehe">
+         　上へ　</a></p>
+        <p><a href="HTML.html"
+         class="html">
+         　html　</a></p>
+        <p><a href="Kigo.html"
+         class="mark">
+         　記号　</a></p>
+        <p><a href="java.html" 
+          class="java">
+          Java</a></p>
+    </div>
+    </footer>
+  </body>
+</html>

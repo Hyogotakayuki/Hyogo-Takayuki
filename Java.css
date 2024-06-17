@@ -1,0 +1,75 @@
+/*stylesheet.css*/   /*Java.css*/
+body {
+    
+    margin: 0 auto;
+    width: 600px;
+    background-color: #b9a1b4;
+}
+
+.logo {
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 10px;
+    margin-top: 5px;
+    width: 600px;
+    color: white;
+    font-size: 40px;
+    text-align: center;
+    line-height: 90px;
+    background-color: rgba(184, 19, 229, 0.682);
+}
+
+li {
+    margin-bottom: 15px;
+    line-height: 50px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 30px;
+    width: 20%;
+    float: left;
+    list-style: none;
+}
+
+a {
+    border-radius: 6px;
+    padding: 0 10px;
+    color: inherit;
+    text-decoration: none;
+}
+
+.blio {
+    background-color: rgba(247, 145, 1, 0.796);
+}
+
+.bottom {
+    font-weight: 500;
+    background-color: aquamarine;
+}
+
+.top {
+    font-weight: 500;
+    background-color: aquamarine;
+}
+
+.kigo {
+    font-weight: 500;
+    background-color: rgba(128, 142, 155, 0.702);
+}
+
+.html {
+    background-color: rgba(28, 80, 171, 0.8);
+}
+
+.css {
+    background-color: rgba(56, 169, 243, 0.7);
+}
+
+.center {
+    text-align: center;
+}
+
+table, tr, th, td {
+    margin: 40px 0;
+    border-collapse: collapse;
+    border: 1px solid green;
+    width: 600px;
+}
+

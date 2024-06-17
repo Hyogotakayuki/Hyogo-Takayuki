@@ -1,0 +1,683 @@
+<!DOCTYPE html>    <!--JavaScript-->
+<html lang="ja">
+    <head>
+        <meta charaset="utf-8">
+        <title>Java</title>
+        <link rel="stylesheet" href="Java.css">
+    </head>
+    <body>
+        <header>
+            <div class="logo">Java</div>
+                <ul>
+                    <li><a href="https://ejje.weblio.jp/sentence/"  
+                        target="_blank" rel="noopner norefarrer" 
+                        class="blio">blio</a>
+                    <li><a href="#bottom" class="bottom">下へ</a>
+                    <li><a href="Kigo.html" class="kigo">記号</a>
+                    <li><a href="html.html" class="html">html</a>
+                    <li><a href="CSS.html" class="css">CSS</a>
+                </ul>
+            </div>
+        </header>
+        <div class="t-title"></div>
+        <div id="top"></div>
+        <table>
+            <tr>
+                <th>console
+                    <br>コンソール
+                </th>
+                <td>ページ検証のconsoleタブに表示される
+                </td>
+                <td>
+                </td>
+            </tr>
+           <tr>
+            <th>conole.log("  ");<br>丸カッコクォーテーションセミコロン</th>
+            <td>カッコクォーテーション内に文字を入れセミコロンで終わる</td>
+            <td>console.log("出力したい<strong>文字や値</strong>
+                ");<strong>を出す。</strong>
+            </td>
+           </tr>
+           <th>"20"+"24"<br></th><td>文字を繋げる</td><td>2024</td>
+            </tr>
+           <tr>
+            <th>//<br>ダブルスラッシュ</th>
+            <td>コメントが書ける</td><td></td>
+            <tr>
+              <th>+　-　*　/<br>プラス,ハイフン<br>
+                アスタリスク<br>スラッシュ</th>
+              <td>計算をする<br></td>
+              <td>console.log<br>(10+5-2/3*1);<br>15</td>
+            </tr>
+            <tr>
+              <th>const age 14;<br>コンスト,スペース,定数,<br>
+                スペース,値,セミコロン
+            </th>
+            <td>スペースで、宣言関数、変数名、= + - / %、12..
+                <br>等を区別している
+            </td>
+            <td>const age 14;</td>
+            </tr>
+            <tr>
+              <th>if (number　> 10){<br>console.log("");
+                <br>}</th><td>if,スペース,丸カッコ,
+                <br>スペース,波カッコ</td><td>console.logスペース,
+                    <br>丸カッコ,ダブルクォテーション,文,セミコロン,
+                    <br>スペース,波カッコ</td>
+            </tr>
+            <tr>
+              <th>[]<br>カクガッコ</th>
+              <td>配列を囲むときに使用</td>
+              <td>const animals = 
+                <br>["dog", "cat", "sheep"];
+                <br>配列は
+                <br>[、"A",と"B",と"C"、];です。
+            </td>
+            </tr>
+            <tr>
+              <th><br></th><td></td><td></td>
+            </tr>
+            <tr>
+              <th><br></th><td></td><td></td>
+            </tr>
+            <tr>
+              <th><br></th><td></td><td></td>
+            </tr>
+            <tr>
+              <th><br></th><td></td><td></td>
+            </tr>
+            <tr>
+              <th><br></th><td></td><td></td>
+            </tr>
+        </table>
+        <h3>変数と定数</h3>
+        <table>
+            <tr>
+                <th>宣言関数</th><th>意味</th><th>使用例</th>
+            </tr>
+            <tr>
+                <th>let = "";<br>レット</th>
+                <td>let name = "変数";<br>
+                  変数宣言と、変数名、"置き換える値"
+                  <br>変数には<strong>丸カッコは要らない</strong></td>
+                  <td>let name = ”名前”;
+                    <br><strong>変数</strong>宣言と、変換名、”変換する値”
+                    <br>console.log(”name”);
+                    <br>出力＝（”名”）</td>
+              </tr>
+              <tr>
+                <th>変数を更新する
+                    <br>変数 = 変更
+                </th>
+                <td>宣言関数を入れない
+                </td>
+                <td>宣言関数を入れて更新しようとすると
+                    <br>更新前後で2重の宣言を指定していることになる
+                    <br>複数の宣言をする場合　,　で区切り　;　で終了する
+                </td>
+                <tr>
+                    <th>変数更新の簡素化
+                        <br>
+                    </th>
+                    <td>let number = number;
+                        <br><strong>number =
+                        <br> number + 9;</strong>
+                    </td>
+                    <td><strong>number += 9</strong>
+                    </td>
+                  </tr>
+              </tr>
+            <tr>
+                <th>%<br>パーセント</th>
+                <td>割った余りを表示</td>
+                <td>console.log(5%2);<br>1</td>
+            </tr>
+            <tr>
+              <th>number<br>numberName</th>
+              <td>変数名は英単語を使う<br>単語を組み合わせるとき
+                <br>繋げる単語の頭文字を大文字にする</td><td></td>
+            </tr>
+            <tr>
+                <th>console.log("");
+                    <br>コンソール.ログ
+                </th>
+                <td>出力(は、”A”);です。                    
+                </td>
+                <td>console.log("");
+                </td>
+            </tr>
+            <tr>
+                <th>変数の変更
+                    <br>
+                </th>
+                <td>let name = "john";
+                    <br>変数のnameは、
+                    <br>”john”;です。
+                    <br>name = "Kate";
+                    <br>変数のnameは、
+                    <br>”kate”;です。
+                </td>
+                <td>console.log(name);John
+                <br>console.log(name);Kate</td>
+            </tr>
+            <tr>
+                <th>const 変数 = "";<br>コンスト</th>
+                <td>定数<br>const  変数　=　””;</td>
+                <td>定数は、変更できない</td>
+            </tr>
+        </table>
+            <h3>条件分岐               
+            </h3>
+        <table>
+            <tr>
+                <th>console.log();
+                    <br>trueかfalse
+                </th>
+                <td>console.logは、条件式が定数と合致していればtrueを返し、間違っているとfalseを返す
+                </td>
+                <td>const age = 24;
+                    <br>// 「age >= 20」を出力してください
+                    <br>console.log(age >= 20);//出力結果｝true
+                    <br>// 「age ＜ 20」を出力してください
+                    <br>console.log(age ＞ 20);//出力結果｝false
+                    <br>// ageの値が20以上の場合に、「私は20歳以上です」と出力してください
+                    <br>if (age >= 20) {
+                        <br>console.log("私は20歳以上です");//出力結果｝私は20歳以上です
+                      <br>}
+                </td>
+            </tr>
+            <tr>
+                <th>if　()｛
+                    <br>console.log();
+                    <br>｝
+                    <br>イフ丸カッコと
+                    <br>波カッコ
+                </th>
+                <td>条件式。
+                    <br>tule,falseに分岐。numberが10より大きい時メッセージを出す
+                </td>
+                <td>const number = 12;
+                    <br>if　(number　> 10) {
+                    <br>console.log("numberは10より大きい");です。
+                    <br>}
+                </td>
+            </tr>
+            <tr>
+                <th>(number > 10);<br></th>
+                <td>条件式をログ()内に表す</td>
+                <td>const number = 12;
+                    console.log(number>10);</td>
+            </tr>
+            <tr>
+                <th>` ${  } ` 
+                    <br>テンプレートリテラル
+                    <br>``バッククォーテーション
+                </th>
+                <td>文字と文字の間に`${定数,変数を}`入れ込む
+                </td>
+                <td>const name = "にんじゃわんこ";
+                    <br>const age = 14;
+                    <br>conole.log(`${name}は、${age}歳です`);
+                    <br>にんじゃわんこは、14歳です</td>
+            </tr>
+            <tr>
+                <th><div class="center">大小比較演算子
+                    <br><br>＜<br><br>＞<br><br>
+                    ＞=<br><br>＜=<br><br></div></th>
+                <td><div class="center"><strong>定数=12</strong><br>
+                    <br>＜定数が13より小さいtrue
+                    <br>定数が11より大きいtrue<br>
+                    <br>定数が12以下true<br>
+                    <br>定数が12以上ture</div></td>
+                <td><div class="center"><strong>//console.log</strong><br>
+                    const number = 12;<br>
+                    console.log(number <strong>＜</strong> 13);//true<br>
+                    console.log(number <strong>＞</strong> 11);//true<br>
+                    console.log(number <strong>＜=</strong> 12);//true<br>
+                    console.log(number <strong>＞=</strong> 12);//true<br></div>
+                </td>
+            </tr>
+            <tr>
+                <th>等価演算子<br><br>==<br><br><br>
+                    <br>!=<br><br><br></th>
+                <td><div class="center"><strong>定数==12</strong>
+                    <br><br>定数と同じ
+                    <br><br>”定数と同じ”
+                    <br><br>定数と違う
+                    <br><br>”定数と違う”
+                </div></td>
+                <td><div class="center"><strong>//console.log</strong>
+                    console.log(number <strong>==</strong> 12);//true
+                    <br>console.log(number <strong>==</strong> "12");//true
+                    <br>console.log(number <strong>!=</strong> 13);//true
+                    <br>console.log(number <strong>!=</strong> "13");//true
+                </div></td>
+            </tr>
+            <tr>
+                <th>厳密等価演算子<br>===<br>!==<br></th>
+                <td><div class="center"><strong>定数==12</strong>
+                    <br><br>定数と全く同じ
+                    <br><br>定数と違う
+                    <br><br>定数と微妙に違う
+                    <br><br>定数と微妙に同じでない
+                </div></td>
+                <td><div class="center">
+                    <strong>//console.log</strong>
+                    <br><br>console.log(number <strong>===</strong> 12);//true
+                    <br>console.log(number <strong>!==</strong> 11);//true
+                    <br>console.log(number <strong>!==</strong> "12");//true
+                    <br>console.log(number <strong>===</strong> "12");//false
+                    <div></td>
+            </tr>
+            <tr>
+                <th>if　{} else｛<br>イフ エルス
+                    <br>if　()｛consto.lo()｝<br>consoleの波カッコ
+                    <br>else ｛ consoleの波カッコ
+                    <br>
+                </th>
+                <td>if　文の条件がfalseの場合、
+                    <br>elseの処理をする。
+                    <br>if　() ｝ else ｛ console
+                    <br>true or false
+                </td>
+                <td>if　(age >= 20) {
+                    <br>console.log("私は20歳以上です");true時の処理
+                    <br>} else {
+                    <br>console.log("私は20歳未満です");false時の処理
+                    <br>}
+                </td>
+            </tr>
+            <tr>
+                <th>if　（）｛console.log();｝if () ｛
+                    <br>true時の処理
+                    <br>｝else｛
+                    <br>falseの処理;　｛
+                    <br>｝ else｛console.log();
+                    <br>イフエルス
+                </th>
+                <td>if　文の条件がfalseの場合、elseの処理が実行
+                </td>
+                <td>if　()｛
+                    <br>true時の処理
+                    <br>｝else｛
+                    <br>false時の処理
+                    <br>｝
+                </td>
+            </tr>
+            <tr>
+                <th>if　()｛コンソール
+                    <br>｝else｛
+                    <br>コンソール｝
+                    <br>if ｛
+                    <br>コンソール
+                    <br>｝
+                </th>
+                <td>else if　を使えば何回も結果を返してくれる
+                </td>
+                <td>const age = 17;
+                    <br>// ageの値が10以上20未満のとき、「私は20歳未満ですが、10歳以上です」と出力してください
+                    <br>if　(age >= 20) {
+                        <br>console.log("私は20歳以上です");
+                        <br>} else if (age >= 10) {
+                        <br>console.log("私は20歳未満ですが、10歳以上です");
+                        <br>} else {
+                        <br>console.log("私は10歳未満です");
+                        <br>}
+                    </td>
+            </tr>
+            <tr>
+                <th>&&<br>2連アンド</th><td>尚且つの意味</td>
+                <td>const age = 24;<br>
+                    // 指定された条件のif文を作成してください<br>
+                    if  (age >= 20 && age ＜ 30) {<br>
+                      console.log("私は20代です");<br>
+                    }</td>
+            </tr>
+            <tr>
+                <th>||<br>縦線２つ</th><td>またはの意味</td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>switch() {}
+                    <br>スイッチ
+                </th>
+                <td>定数2
+                    <br>switch(２){
+                    <br><br>定数が1:の場合
+                    <br>”大吉”;
+                    <br>break;区切り
+                    <br><br>定数が2:の時
+                    <br>”吉”;
+                    <br>break区切り
+                    <br><br><br>定数が3:の時
+                    <br>”小吉”;
+                    <br>break;区切り
+                    <br>}
+                </td>
+                <td>const n = 2;
+                    <br>switch (n) {
+                    <br>case 1:
+                    <br>console.log("大吉です");
+                    <br>break;
+                    <br>// nの値が2のcaseを追加してください
+                    <br>case 2:
+                    <br>console.log("吉です");
+                    <br>break;
+                    <br>// nの値が3のcaseを追加してください
+                    <br>case 3:
+                    <br>console.log("小吉です");
+                    <br>break;
+                    <br>}
+                </td>
+            </tr>
+            <tr>
+            <th>case"":
+                <br>ケイス””コロン：
+            </th>
+            <td>～の場合
+            </td>
+            <td>switch (fruit) ｛
+                <br>case 'banana':決めるの意味:
+                <br>console.log('バナナです！');
+                <br>break;
+            </td>
+            </tr>
+            <tr>
+                <th>break;<br>ブレーク,セミコロン</th>
+                <td>計算の終了</td>
+                <td>caseとセット</td>
+            </tr>
+            <tr>
+                <th>default:<br>デフォルト,コロン</th>
+                <td>条件が合致しない場合に実行させる</td>
+                <td>const fruit = 'apple';<br>
+                    switch (fruit) {<br>
+                      case 'banana':<br>
+                        console.log('バナナです！');
+                        break;<br>
+                      case 'orange':<br>
+                        console.log('オレンジです！');
+                        break;<br>
+                      case 'mango':<br>
+                        console.log('マンゴーです！');
+                        break;<br>
+                      default:<br>
+                        console.log('一致するフルーツがありません。');<br>
+                    }<br>// どのcaseにも一致しない場合に実行
+                    <br></td>
+            </tr>
+            <tr>
+                <th>「indexOf」を使った文字列検索方法<br>
+                </th><td></td><td></td>
+            </tr>
+            <tr>
+                <th>「indexOf」の配列(Array)検索方法<br>
+                </th><td></td><td></td>
+            </tr>
+            <tr>
+                <th>「lastIndexOf」で後ろから検索する方法<br>
+                </th><td></td><td></td>
+            </tr>
+            <tr>
+                <th>search」を使った正規表現による検索方法<br>
+                </th><td></td><td></td>
+            </tr>
+            <tr>
+                <th>「match」を使った検索方法<br></th>
+                <td></td><td></td>
+            </tr>
+            <tr>
+                <th>「match」複数の文字列を検索する方法<br></th>
+                <td></td><td></td>
+            </tr>
+            <tr>
+                <th>「test」検索<br></th>
+                <td></td><td></td>
+            </tr>
+            <tr>
+                <th>while(＜=) ｛
+                    <br>ワイル
+                </th>
+                <td>()内に繰り返す数を書く
+                </td>
+                <td>// 変数numberを定義してください
+                    <br>let number = 1;
+                    <br>// while文を作成してください
+                    <br>while (number ＜= 100) {
+                    <br>console.log(number);
+                    <br>number += 1;
+                    <br>}
+                </td>
+            </tr>
+            <tr>
+                <th>for<br>フォー<strong>(レッツ;)</th>
+                <td>whileを簡略化。
+                    <br>for<strong>（let</strong> 変数<strong>；</strong>
+                    <br>条件式<strong>；セミコロンで区切る</strong>
+                    <br>変数をどうするか<strong>）</strong>｛
+                    <br>console.log()
+                    <br>｝
+                </td>
+                <td><strong>for (let number = 1;
+                    <br> number ＜= 100; number++)</strong> {
+                    console.log(number);
+                    <br>}
+                </td>
+            </tr>
+        </table>
+        <h3>配列</h3>
+        <table>
+            <tr>
+                <th>配列のグループ名は、複数形にする
+                    <br>['dog', 'cat', 'sheep'];
+                </th>
+                <td>(3) ['dog', 'cat', 'sheep']<strong>;</strong>
+                    <br>0: "dog"
+                    <br>1: "cat"
+                    <br>2: "sheep"
+                    <br>length: 3
+                    <br>
+                </td>
+                <td>// 定数animalsに、指定された配列を代入してください
+                    <br>const animals = 
+                    <br>["dog", "cat", "sheep"]<strong>;</strong>
+                    <br>// 定数animalsを出力して下さい
+                    <br>console.log(animals)<strong>;</strong>
+                </td>
+            </tr>
+            <tr>
+                <th>配列に変数を代入
+                    <br>console.log<br>（[ ]）;
+                </th>
+                <td>console.logに変数に
+                    <br>代入したいイニシャルを
+                    <br><strong>([角ガッコで表す]);</strong>
+                </td>
+                <td>const animals =
+                    <br> ["dog", "cat", "sheep"]<strong>;</strong>
+                    <br>// for文を用いて、配列の値を
+                    <br>順にコンソールに出力してください
+                    <br>for (let i = 0<strong>;</strong> i ＜ 3<strong>;</strong> i++) {
+                    <br><strong>console.log(animals[i]);</strong>
+                    <br>}
+                </td>
+            </tr>
+            <tr>
+                <th>配列.length
+                    <br>レングス
+                    <br>配列の連なり
+                </th>
+                <td>要素の<strong>連なり</strong>をconsto.logにて決める
+                    <br>for文を用いて、
+                    <br>(配列のナンバリング)(要素すべての連なり)(を数える)</td>
+                <td>const animal<strong>s</strong> = ["dog", "cat",
+                    <br> "sheep","rabbit", "monkey", "tiger", "bear", "elephant"];<br>
+                    // lengthを用いて配列の要素の数を出力してください
+                    <br>console.log(animal<strong>s</strong>.length);
+                    <br>// lengthを用いて条件式を書き換えてください
+                    <br>for (let i = 0; i ＜ animal<strong>s</strong>.length; i++) {
+                    <br>console.log(animal<strong>s</strong>[i]);
+                    <br>}
+                    <br>変数を決める
+                </td>
+            </tr>
+            <tr>
+                <th>プロパティ<br></th>
+                <td>値に名前を付ける</td>
+                <td>{name: "名前"};</td>
+            </tr>
+            <tr>
+                <th>オブジェクト
+                    <br>
+                </th>
+                <td>配列の値にプロパティという名前を付ける
+                </td>
+                <td>cnst who = {name: "名前"};
+                </td>
+            </tr>
+            <tr>
+                <th>オブジェクトごと配列にする
+                    <br>[オブジェクトを角ガッコで囲む];
+                </th>
+                <td>//出力結果｝
+                    <br>{name: 'にんじゃわんこ', age: 14}
+                    <br>age:14
+                    <br>name:"にんじゃわんこ"
+                </td>
+                <td>const characters = <strong>[</strong>
+                    <br>{name: "にんじゃわんこ", age: 14}<strong>,</strong>
+                    <br>{name: "ひつじ仙人", age: 1000}
+                    <br><strong>];</strong>
+                    <br>// charactersの1つ目の要素をコンソールに
+                    出力してください
+                    <br><strong>console.log(characters[0]);</strong>
+                        <br>// charactersの2つ目の要素の「name」に対応する
+                        値をコンソールに出力してください
+                    <br><strong>console.log(characters[1].name);</strong>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <br>
+                </th>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <br>
+                </th>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <br>
+                </th>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <br>
+                </th>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <br>
+                </th>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <br>
+                </th>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <br>
+                </th>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <br>
+                </th>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <br>
+                </th>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <br>
+                </th>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <br>
+                </th>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <br>
+                </th>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+        </table>
+        <div id="bottom"></div>
+        <footer>
+            <ul>
+                <li><a href="https://ejje.weblio.jp/sentence/" 
+                    target="_blank" rel="noopner norefarrer" 
+                    class="blio">blio</a>
+                <li><a href="#top" class="top">上へ</a>
+                <li><a href="Kigo.html" class="kigo">記号</a>
+                <li><a href="html.html" class="html">html</a>
+                <li><a href="CSS.html" class="css">CSS</a>
+            </ul>
+        </footer>
+        <script src="kigo.js"></script>
+        <script src="buddha.js"></script>
+    </body>
+</html>

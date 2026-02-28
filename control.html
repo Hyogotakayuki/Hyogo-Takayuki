@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="control.css">
+        <title>感情コントロール</title>
+    </head>
+<body>
+    <!--出来事入力-->
+    <div class="card">
+    <h2>不安や不満,怒りを感じたことは？</h2>
+    <div class="row">
+        <div class="field">
+            <label for="who">誰</label>
+            <input id="who" class="short" type="text">
+        </div>
+        <div class="conjunction">が</div>
+        <div class="field">
+            <label for="doing">どうしている</label>
+            <input id="doing" type="text">
+        </div>
+        <div class="conjunction">事に</div>
+    </div>
+    <div class="emotion">
+        <button id="anxiety">不安を感じる</button>
+        <button id="dissatisfaction">不満を感じる</button>
+        <button id="anger">怒りを感じる</button>
+    </div>
+    </div>
+    <!--困ることは？-->
+    <div class="card">
+        <h4 id="feedBack"></h4>
+    <div class="row">
+        <div class="field">
+            <label for="who2">誰</label>
+            <input id="who2" class="short" type="text">
+        </div>
+        <div class="conjunction">が</div>
+        <div class="field">
+            <label for="doing2">どうしている</label>
+            <input id="doing2" type="text">
+        </div>
+        <div class="conjunction">事だと</div>
+    </div>
+    <div id="think" class="right">
+        <button id="feel">思う</button>
+        <button id="notFeel">思わない</button>
+    </div>
+    <h3>履歴</h3>
+    <ul id="historyList"></ul>
+    </div>
+
+    <script src="control.js"></script>
+</body>
+</html>

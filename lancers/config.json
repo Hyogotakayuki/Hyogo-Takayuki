@@ -1,0 +1,26 @@
+{
+  "credentials": {
+    "email": "your_email@example.com",
+    "password": "your_password"
+  },
+  "search": {
+    "keywords": ["データ入力", "アンケート", "リサーチ", "文字起こし"],
+    "min_reward": 100,
+    "max_reward": 10000,
+    "job_types": ["task"],
+    "max_applications_per_run": 10
+  },
+  "task_completion": {
+    "auto_submit": true,
+    "wait_seconds_between_tasks": 3,
+    "screenshot_on_complete": true
+  },
+  "browser": {
+    "headless": false,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+  },
+  "logging": {
+    "level": "INFO",
+    "file": "lancers_bot.log"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "exchange_rate": {
+    "CNY_to_JPY": 20.5,
+    "comment": "1元≒20.5円（定期的に更新してください）"
+  },
+  "keywords": [
+    "スマホケース",
+    "ワイヤレスイヤホン",
+    "LEDライト",
+    "フィジェットスピナー",
+    "美容ローラー",
+    "ゲームコントローラー",
+    "ミニ扇風機",
+    "磁気充電ケーブル"
+  ],
+  "costs": {
+    "shipping_from_china_jpy": 800,
+    "import_duty_rate": 0.08,
+    "domestic_shipping_jpy": 350
+  },
+  "platform_fees": {
+    "amazon":  0.15,
+    "rakuten": 0.07,
+    "yahoo":   0.07,
+    "mercari": 0.10
+  },
+  "filters": {
+    "min_profit_jpy": 100,
+    "min_roi_pct": 10,
+    "max_china_price_cny": 3000
+  },
+  "apis": {
+    "rakuten_app_id": "a89dbbe9-9a9a-4797-8b44-68ac3c8dafa2",
+    "yahoo_app_id":  "UhZpUv51PG",
+    "comment": "楽天: https://webservice.rakuten.co.jp/  Yahoo: https://developer.yahoo.co.jp/start/"
+  },
+  "output": {
+    "csv_path": "output/sedori_list.csv",
+    "max_results_per_keyword": 20
+  }
+}

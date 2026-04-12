@@ -25,8 +25,8 @@
     "mercari": 0.10
   },
   "filters": {
-    "min_profit_jpy": 500,
-    "min_roi_pct": 30,
+    "min_profit_jpy": 100,
+    "min_roi_pct": 10,
     "max_china_price_cny": 3000
   },
   "apis": {

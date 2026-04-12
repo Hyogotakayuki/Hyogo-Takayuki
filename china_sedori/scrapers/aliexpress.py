@@ -53,18 +53,28 @@ def search_aliexpress(keyword: str, max_results: int = 20, headless: bool = True
         driver.get(url)
         time.sleep(5)  # JS読み込み待ち
 
-        # 商品カードを取得
+        # 商品カードを取得（AliExpress のHTML構造変化に対応）
         card_selectors = [
+            "[class*='search-card-item']",
+            "[class*='manhattan--container']",
             "[class*='product-snippet']",
             "[class*='list--gallery--']",
+            "[class*='card--wishlist']",
+            "[class*='SearchItems']",
             "a[href*='/item/']",
         ]
 
         cards = []
         for sel in card_selectors:
             cards = driver.find_elements(By.CSS_SELECTOR, sel)
-            if cards:
+            if len(cards) >= 3:
+                logger.info("  → セレクタ '%s' で %d 件取得", sel, len(cards))
                 break
+
+        # フォールバック: /item/ を含むリンクから直接取得
+        if not cards:
+            cards = driver.find_elements(By.XPATH, "//a[contains(@href,'/item/')]")
+            logger.info("  → XPath フォールバック: %d 件", len(cards))
 
         logger.info("  → %d 件のカードを取得", len(cards))
 

@@ -30,7 +30,7 @@
     "max_china_price_cny": 3000
   },
   "apis": {
-    "rakuten_app_id": "YOUR_RAKUTEN_APP_ID",
+    "rakuten_app_id": "a89dbbe9-9a9a-4797-8b44-68ac3c8dafa2",
     "yahoo_app_id":  "YOUR_YAHOO_CLIENT_ID",
     "comment": "楽天: https://webservice.rakuten.co.jp/  Yahoo: https://developer.yahoo.co.jp/start/"
   },

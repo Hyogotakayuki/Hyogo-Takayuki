@@ -12,8 +12,8 @@ const CATEGORY_LABELS = { bank: '銀行', stocks: '株式', insurance: '保険',
 const CATEGORY_ICONS = { bank: '🏦', stocks: '📈', insurance: '🛡️', pension: '👴', savings: '💹', self_defense: '🔒' };
 const FREQ_LABELS = { monthly: '毎月', bimonthly: '隔月', quarterly: '四半期', annual: '年1回' };
 const FREQ_MULT = { monthly: 12, bimonthly: 6, quarterly: 4, annual: 1 };
-const EXPENSE_LABELS = { subscription: 'サブスク', food: '食費', utilities: '光熱費', socializing: '交際費', hygiene: '衛生費', stress_relief: 'ストレス発散', enrichment: '生活充実費', other: 'その他' };
-const EXPENSE_ICONS = { subscription: '📱', food: '🍽️', utilities: '💡', socializing: '🥂', hygiene: '🧴', stress_relief: '🎮', enrichment: '✨', other: '📝' };
+const EXPENSE_LABELS = { subscription: 'サブスク', food: '食費', utilities: '光熱費', socializing: '交際費', hygiene: '衛生費', stress_relief: '娯楽費', enrichment: '教養費', other: 'その他' };
+const EXPENSE_ICONS = { subscription: '📱', food: '🍽️', utilities: '💡', socializing: '🥂', hygiene: '🧴', stress_relief: '🎮', enrichment: '📚', other: '📝' };
 
 /* ===== FORMAT ===== */
 function formatYen(n) {
@@ -144,7 +144,7 @@ async function loadDashboard() {
     // Charts
     const catMap = { bank: '銀行', stocks: '株式', insurance: '保険', pension: '障害年金', savings: '積立', self_defense: '自己防衛費' };
     const catColors = ['#0f3460', '#e94560', '#4caf50', '#ff9800', '#00bcd4', '#9c27b0'];
-    const expCatMap = { subscription: 'サブスク', food: '食費', utilities: '光熱費', socializing: '交際費', hygiene: '衛生費', stress_relief: 'ストレス発散', enrichment: '生活充実費', other: 'その他' };
+    const expCatMap = { subscription: 'サブスク', food: '食費', utilities: '光熱費', socializing: '交際費', hygiene: '衛生費', stress_relief: '娯楽費', enrichment: '教養費', other: 'その他' };
     const expColors = ['#9c27b0', '#e91e63', '#ff9800', '#00bcd4', '#4caf50', '#ff5722', '#3f51b5', '#795548'];
 
     renderPieChart('assets-chart', assetsChart,

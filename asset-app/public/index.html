@@ -183,6 +183,13 @@
       <div class="category-tabs">
         <button class="cat-tab active" onclick="filterExpenses('all', this)">すべて</button>
         <button class="cat-tab" onclick="filterExpenses('subscription', this)">📱 サブスク</button>
+        <button class="cat-tab" onclick="filterExpenses('food', this)">🍽️ 食費</button>
+        <button class="cat-tab" onclick="filterExpenses('utilities', this)">💡 光熱費</button>
+        <button class="cat-tab" onclick="filterExpenses('socializing', this)">🥂 交際費</button>
+        <button class="cat-tab" onclick="filterExpenses('hygiene', this)">🧴 衛生費</button>
+        <button class="cat-tab" onclick="filterExpenses('stress_relief', this)">🎮 ストレス発散</button>
+        <button class="cat-tab" onclick="filterExpenses('enrichment', this)">✨ 生活充実費</button>
+        <button class="cat-tab" onclick="filterExpenses('other', this)">📝 その他</button>
       </div>
 
       <div id="expenses-list" class="items-list"></div>
@@ -294,6 +301,13 @@
         <select id="expense-category" required>
           <option value="">選択してください</option>
           <option value="subscription">📱 サブスク</option>
+          <option value="food">🍽️ 食費</option>
+          <option value="utilities">💡 光熱費</option>
+          <option value="socializing">🥂 交際費</option>
+          <option value="hygiene">🧴 衛生費</option>
+          <option value="stress_relief">🎮 ストレス発散</option>
+          <option value="enrichment">✨ 生活充実費</option>
+          <option value="other">📝 その他</option>
         </select>
       </div>
       <div class="form-group">

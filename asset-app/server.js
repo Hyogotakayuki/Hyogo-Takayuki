@@ -43,7 +43,7 @@ app.get('/api/dashboard', (req, res) => {
   const myExpenses = data.expenses.filter(e => e.user_id === userId);
   const monthlyExpenses = myExpenses.reduce((s, e) => s + e.amount, 0);
 
-  const expensesByCategory = ['subscription', 'savings', 'self_defense'].map(cat => ({
+  const expensesByCategory = ['subscription', 'food', 'utilities', 'socializing', 'hygiene', 'stress_relief', 'enrichment', 'other'].map(cat => ({
     category: cat,
     total: myExpenses.filter(e => e.category === cat).reduce((s, e) => s + e.amount, 0)
   })).filter(c => c.total > 0);

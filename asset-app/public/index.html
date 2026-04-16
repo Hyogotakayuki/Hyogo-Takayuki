@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>総合資産管理アプリ</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- AUTH PAGE -->
+<div id="auth-page" class="auth-page">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <span class="logo-icon">💴</span>
+      <h1>資産管理アプリ</h1>
+      <p>あなたの財務を一元管理</p>
+    </div>
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchAuthTab('login')">ログイン</button>
+      <button class="tab-btn" onclick="switchAuthTab('register')">新規登録</button>
+    </div>
+
+    <!-- Login Form -->
+    <form id="login-form" class="auth-form" onsubmit="handleLogin(event)">
+      <div class="form-group">
+        <label>メールアドレス</label>
+        <input type="email" id="login-email" placeholder="example@email.com" required>
+      </div>
+      <div class="form-group">
+        <label>パスワード</label>
+        <input type="password" id="login-password" placeholder="パスワード" required>
+      </div>
+      <div id="login-error" class="error-msg"></div>
+      <button type="submit" class="btn btn-primary full-width">ログイン</button>
+    </form>
+
+    <!-- Register Form -->
+    <form id="register-form" class="auth-form hidden" onsubmit="handleRegister(event)">
+      <div class="form-group">
+        <label>ユーザー名</label>
+        <input type="text" id="reg-username" placeholder="ユーザー名" required>
+      </div>
+      <div class="form-group">
+        <label>メールアドレス</label>
+        <input type="email" id="reg-email" placeholder="example@email.com" required>
+      </div>
+      <div class="form-group">
+        <label>パスワード（6文字以上）</label>
+        <input type="password" id="reg-password" placeholder="パスワード" required minlength="6">
+      </div>
+      <div id="register-error" class="error-msg"></div>
+      <button type="submit" class="btn btn-primary full-width">登録する</button>
+    </form>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="app" class="app hidden">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <span class="logo-icon">💴</span>
+      <span>資産管理</span>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active" onclick="showPage('dashboard', this)">
+        <span class="nav-icon">📊</span> ダッシュボード
+      </a>
+      <a href="#" class="nav-item" onclick="showPage('assets', this)">
+        <span class="nav-icon">🏦</span> 資産管理
+      </a>
+      <a href="#" class="nav-item" onclick="showPage('income', this)">
+        <span class="nav-icon">💰</span> 収入源
+      </a>
+      <a href="#" class="nav-item" onclick="showPage('expenses', this)">
+        <span class="nav-icon">💳</span> 月次費用
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <span id="sidebar-username"></span>
+      <button class="btn btn-ghost" onclick="handleLogout()">ログアウト</button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <!-- Dashboard -->
+    <section id="page-dashboard" class="page active">
+      <h2 class="page-title">ダッシュボード</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">総資産</div>
+          <div class="stat-value" id="dash-total-assets">--</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">年収（合計）</div>
+          <div class="stat-value" id="dash-annual-income">--</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">月次費用（合計）</div>
+          <div class="stat-value" id="dash-monthly-expenses">--</div>
+        </div>
+        <div class="stat-card health-card">
+          <div class="stat-label">財務健全度</div>
+          <div class="stat-value" id="dash-health-score">--</div>
+          <div class="health-label" id="dash-health-label"></div>
+        </div>
+      </div>
+
+      <div class="charts-grid">
+        <div class="chart-card">
+          <h3>資産内訳</h3>
+          <div class="chart-container">
+            <canvas id="assets-chart"></canvas>
+          </div>
+        </div>
+        <div class="chart-card">
+          <h3>費用内訳</h3>
+          <div class="chart-container">
+            <canvas id="expenses-chart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="health-info-card">
+        <h3>財務健全度について</h3>
+        <div class="health-levels">
+          <div class="health-level"><span class="badge danger">要注意</span> 総資産 ÷ 年収 &lt; 1倍</div>
+          <div class="health-level"><span class="badge warning">標準</span> 1倍 〜 3倍未満</div>
+          <div class="health-level"><span class="badge success">良好</span> 3倍 〜 5倍未満</div>
+          <div class="health-level"><span class="badge info">優秀</span> 5倍以上</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Assets Page -->
+    <section id="page-assets" class="page hidden">
+      <div class="page-header">
+        <h2 class="page-title">資産管理</h2>
+        <button class="btn btn-primary" onclick="openModal('asset-modal')">＋ 資産を追加</button>
+      </div>
+
+      <div class="category-tabs">
+        <button class="cat-tab active" onclick="filterAssets('all', this)">すべて</button>
+        <button class="cat-tab" onclick="filterAssets('bank', this)">🏦 銀行</button>
+        <button class="cat-tab" onclick="filterAssets('stocks', this)">📈 株式</button>
+        <button class="cat-tab" onclick="filterAssets('insurance', this)">🛡️ 保険</button>
+        <button class="cat-tab" onclick="filterAssets('pension', this)">👴 障害年金</button>
+      </div>
+
+      <div id="assets-list" class="items-list"></div>
+      <div class="total-bar">
+        <span>資産合計:</span>
+        <span id="assets-total" class="total-value">¥0</span>
+      </div>
+    </section>
+
+    <!-- Income Page -->
+    <section id="page-income" class="page hidden">
+      <div class="page-header">
+        <h2 class="page-title">収入源管理</h2>
+        <button class="btn btn-primary" onclick="openModal('income-modal')">＋ 収入源を追加</button>
+      </div>
+      <div id="income-list" class="items-list"></div>
+      <div class="total-bar">
+        <span>年収合計:</span>
+        <span id="income-total" class="total-value">¥0</span>
+      </div>
+    </section>
+
+    <!-- Expenses Page -->
+    <section id="page-expenses" class="page hidden">
+      <div class="page-header">
+        <h2 class="page-title">月次費用管理</h2>
+        <button class="btn btn-primary" onclick="openModal('expense-modal')">＋ 費用を追加</button>
+      </div>
+
+      <div class="category-tabs">
+        <button class="cat-tab active" onclick="filterExpenses('all', this)">すべて</button>
+        <button class="cat-tab" onclick="filterExpenses('subscription', this)">📱 サブスク</button>
+        <button class="cat-tab" onclick="filterExpenses('savings', this)">💹 積立</button>
+        <button class="cat-tab" onclick="filterExpenses('self_defense', this)">🛡️ 自己防衛費</button>
+      </div>
+
+      <div id="expenses-list" class="items-list"></div>
+      <div class="total-bar">
+        <span>月次費用合計:</span>
+        <span id="expenses-total" class="total-value">¥0</span>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- MODALS -->
+
+<!-- Asset Modal -->
+<div id="asset-modal" class="modal-overlay hidden" onclick="closeModalOutside(event, 'asset-modal')">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="asset-modal-title">資産を追加</h3>
+      <button class="modal-close" onclick="closeModal('asset-modal')">✕</button>
+    </div>
+    <form onsubmit="handleAssetSubmit(event)">
+      <input type="hidden" id="asset-id">
+      <div class="form-group">
+        <label>カテゴリ *</label>
+        <select id="asset-category" required>
+          <option value="">選択してください</option>
+          <option value="bank">🏦 銀行</option>
+          <option value="stocks">📈 株式</option>
+          <option value="insurance">🛡️ 保険</option>
+          <option value="pension">👴 障害年金</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>名称 *</label>
+        <input type="text" id="asset-name" placeholder="例: 三菱UFJ銀行" required>
+      </div>
+      <div class="form-group">
+        <label>金額（円） *</label>
+        <input type="number" id="asset-amount" placeholder="0" min="0" step="1" required>
+      </div>
+      <div class="form-group">
+        <label>メモ</label>
+        <input type="text" id="asset-notes" placeholder="任意のメモ">
+      </div>
+      <div id="asset-error" class="error-msg"></div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" onclick="closeModal('asset-modal')">キャンセル</button>
+        <button type="submit" class="btn btn-primary">保存</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Income Modal -->
+<div id="income-modal" class="modal-overlay hidden" onclick="closeModalOutside(event, 'income-modal')">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="income-modal-title">収入源を追加</h3>
+      <button class="modal-close" onclick="closeModal('income-modal')">✕</button>
+    </div>
+    <form onsubmit="handleIncomeSubmit(event)">
+      <input type="hidden" id="income-id">
+      <div class="form-group">
+        <label>収入源名 *</label>
+        <input type="text" id="income-name" placeholder="例: 給与、副業収入" required>
+      </div>
+      <div class="form-group">
+        <label>受取金額（円） *</label>
+        <input type="number" id="income-amount" placeholder="0" min="0" step="1" required>
+      </div>
+      <div class="form-group">
+        <label>受取頻度 *</label>
+        <select id="income-frequency" required>
+          <option value="">選択してください</option>
+          <option value="monthly">毎月（×12）</option>
+          <option value="bimonthly">隔月（×6）</option>
+          <option value="quarterly">四半期（×4）</option>
+          <option value="annual">年1回（×1）</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>メモ</label>
+        <input type="text" id="income-notes" placeholder="任意のメモ">
+      </div>
+      <div id="income-annual-preview" class="annual-preview hidden"></div>
+      <div id="income-error" class="error-msg"></div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" onclick="closeModal('income-modal')">キャンセル</button>
+        <button type="submit" class="btn btn-primary">保存</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Expense Modal -->
+<div id="expense-modal" class="modal-overlay hidden" onclick="closeModalOutside(event, 'expense-modal')">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="expense-modal-title">費用を追加</h3>
+      <button class="modal-close" onclick="closeModal('expense-modal')">✕</button>
+    </div>
+    <form onsubmit="handleExpenseSubmit(event)">
+      <input type="hidden" id="expense-id">
+      <div class="form-group">
+        <label>カテゴリ *</label>
+        <select id="expense-category" required>
+          <option value="">選択してください</option>
+          <option value="subscription">📱 サブスク</option>
+          <option value="savings">💹 積立</option>
+          <option value="self_defense">🛡️ 自己防衛費</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>費用名 *</label>
+        <input type="text" id="expense-name" placeholder="例: Netflix、積立NISA" required>
+      </div>
+      <div class="form-group">
+        <label>月額（円） *</label>
+        <input type="number" id="expense-amount" placeholder="0" min="0" step="1" required>
+      </div>
+      <div class="form-group">
+        <label>メモ</label>
+        <input type="text" id="expense-notes" placeholder="任意のメモ">
+      </div>
+      <div id="expense-error" class="error-msg"></div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" onclick="closeModal('expense-modal')">キャンセル</button>
+        <button type="submit" class="btn btn-primary">保存</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Delete Confirm Modal -->
+<div id="delete-modal" class="modal-overlay hidden" onclick="closeModalOutside(event, 'delete-modal')">
+  <div class="modal modal-sm">
+    <div class="modal-header">
+      <h3>削除確認</h3>
+      <button class="modal-close" onclick="closeModal('delete-modal')">✕</button>
+    </div>
+    <p style="margin: 16px 0;">この項目を削除してもよいですか？</p>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-ghost" onclick="closeModal('delete-modal')">キャンセル</button>
+      <button type="button" class="btn btn-danger" onclick="confirmDelete()">削除する</button>
+    </div>
+  </div>
+</div>
+
+<script src="/js/app.js"></script>
+</body>
+</html>

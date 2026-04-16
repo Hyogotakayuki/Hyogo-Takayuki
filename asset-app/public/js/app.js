@@ -102,9 +102,14 @@ async function handleLogout() {
 
 /* ===== NAVIGATION ===== */
 function showPage(name, linkEl) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.page').forEach(p => {
+    p.classList.remove('active');
+    p.classList.add('hidden');
+  });
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  document.getElementById('page-' + name).classList.add('active');
+  const page = document.getElementById('page-' + name);
+  page.classList.remove('hidden');
+  page.classList.add('active');
   if (linkEl) linkEl.classList.add('active');
   if (name === 'dashboard') loadDashboard();
 }

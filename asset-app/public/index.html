@@ -149,6 +149,8 @@
         <button class="cat-tab" onclick="filterAssets('stocks', this)">📈 株式</button>
         <button class="cat-tab" onclick="filterAssets('insurance', this)">🛡️ 保険</button>
         <button class="cat-tab" onclick="filterAssets('pension', this)">👴 障害年金</button>
+        <button class="cat-tab" onclick="filterAssets('savings', this)">💹 積立</button>
+        <button class="cat-tab" onclick="filterAssets('self_defense', this)">🔒 自己防衛費</button>
       </div>
 
       <div id="assets-list" class="items-list"></div>
@@ -181,8 +183,6 @@
       <div class="category-tabs">
         <button class="cat-tab active" onclick="filterExpenses('all', this)">すべて</button>
         <button class="cat-tab" onclick="filterExpenses('subscription', this)">📱 サブスク</button>
-        <button class="cat-tab" onclick="filterExpenses('savings', this)">💹 積立</button>
-        <button class="cat-tab" onclick="filterExpenses('self_defense', this)">🛡️ 自己防衛費</button>
       </div>
 
       <div id="expenses-list" class="items-list"></div>
@@ -214,6 +214,8 @@
           <option value="stocks">📈 株式</option>
           <option value="insurance">🛡️ 保険</option>
           <option value="pension">👴 障害年金</option>
+          <option value="savings">💹 積立</option>
+          <option value="self_defense">🔒 自己防衛費</option>
         </select>
       </div>
       <div class="form-group">
@@ -292,8 +294,6 @@
         <select id="expense-category" required>
           <option value="">選択してください</option>
           <option value="subscription">📱 サブスク</option>
-          <option value="savings">💹 積立</option>
-          <option value="self_defense">🛡️ 自己防衛費</option>
         </select>
       </div>
       <div class="form-group">

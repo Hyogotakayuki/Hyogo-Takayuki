@@ -31,7 +31,7 @@ app.get('/api/dashboard', (req, res) => {
   const myAssets = data.assets.filter(a => a.user_id === userId);
   const totalAssets = myAssets.reduce((s, a) => s + a.amount, 0);
 
-  const assetsByCategory = ['bank', 'stocks', 'insurance', 'pension'].map(cat => ({
+  const assetsByCategory = ['bank', 'stocks', 'insurance', 'pension', 'savings', 'self_defense'].map(cat => ({
     category: cat,
     total: myAssets.filter(a => a.category === cat).reduce((s, a) => s + a.amount, 0)
   })).filter(c => c.total > 0);

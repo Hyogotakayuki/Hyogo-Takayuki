@@ -7,7 +7,7 @@ function auth(req, res, next) {
   next();
 }
 
-const VALID_CATEGORIES = ['subscription', 'savings', 'self_defense'];
+const VALID_CATEGORIES = ['subscription'];
 
 router.get('/', auth, (req, res) => {
   const data = store.read();

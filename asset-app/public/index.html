@@ -77,6 +77,9 @@
       <a href="#" class="nav-item" onclick="showPage('expenses', this)">
         <span class="nav-icon">💳</span> 月次費用
       </a>
+      <a href="#" class="nav-item" onclick="showPage('transactions', this)">
+        <span class="nav-icon">📒</span> 収支記録
+      </a>
     </nav>
     <div class="sidebar-footer">
       <span id="sidebar-username"></span>
@@ -197,6 +200,46 @@
         <span>月次費用合計:</span>
         <span id="expenses-total" class="total-value">¥0</span>
       </div>
+    </section>
+
+    <!-- Transactions Page -->
+    <section id="page-transactions" class="page hidden">
+      <div class="page-header">
+        <h2 class="page-title">収支記録</h2>
+        <button class="btn btn-primary" onclick="openModal('transaction-modal'); resetTransactionModal()">＋ 記録を追加</button>
+      </div>
+
+      <!-- Month selector & filter -->
+      <div class="tx-controls">
+        <div class="month-nav">
+          <button class="btn btn-ghost btn-icon" onclick="changeMonth(-1)">◀</button>
+          <span id="tx-month-label" class="month-label"></span>
+          <button class="btn btn-ghost btn-icon" onclick="changeMonth(1)">▶</button>
+        </div>
+        <div class="tx-type-filter">
+          <button class="cat-tab active" onclick="filterTx('all', this)">すべて</button>
+          <button class="cat-tab" onclick="filterTx('income', this)">収入</button>
+          <button class="cat-tab" onclick="filterTx('expense', this)">支出</button>
+        </div>
+      </div>
+
+      <!-- Monthly summary bar -->
+      <div class="tx-summary">
+        <div class="tx-sum-item income">
+          <span class="tx-sum-label">収入</span>
+          <span class="tx-sum-value" id="tx-total-income">¥0</span>
+        </div>
+        <div class="tx-sum-item expense">
+          <span class="tx-sum-label">支出</span>
+          <span class="tx-sum-value" id="tx-total-expense">¥0</span>
+        </div>
+        <div class="tx-sum-item balance">
+          <span class="tx-sum-label">収支</span>
+          <span class="tx-sum-value" id="tx-balance">¥0</span>
+        </div>
+      </div>
+
+      <div id="transactions-list" class="items-list"></div>
     </section>
 
   </main>
@@ -325,6 +368,48 @@
       <div id="expense-error" class="error-msg"></div>
       <div class="modal-actions">
         <button type="button" class="btn btn-ghost" onclick="closeModal('expense-modal')">キャンセル</button>
+        <button type="submit" class="btn btn-primary">保存</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Transaction Modal -->
+<div id="transaction-modal" class="modal-overlay hidden" onclick="closeModalOutside(event, 'transaction-modal')">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="transaction-modal-title">収支を記録</h3>
+      <button class="modal-close" onclick="closeModal('transaction-modal')">✕</button>
+    </div>
+    <form onsubmit="handleTransactionSubmit(event)">
+      <input type="hidden" id="tx-id">
+      <div class="form-group">
+        <label>種別 *</label>
+        <div class="type-toggle">
+          <button type="button" id="tx-type-income" class="type-btn active" onclick="setTxType('income')">💰 収入</button>
+          <button type="button" id="tx-type-expense" class="type-btn" onclick="setTxType('expense')">💸 支出</button>
+        </div>
+        <input type="hidden" id="tx-type" value="income">
+      </div>
+      <div class="form-group">
+        <label>カテゴリ *</label>
+        <select id="tx-category" required></select>
+      </div>
+      <div class="form-group">
+        <label>金額（円） *</label>
+        <input type="number" id="tx-amount" placeholder="0" min="0" step="1" required>
+      </div>
+      <div class="form-group">
+        <label>日付 *</label>
+        <input type="date" id="tx-date" required>
+      </div>
+      <div class="form-group">
+        <label>内容・メモ</label>
+        <input type="text" id="tx-description" placeholder="例: スーパーで食料品">
+      </div>
+      <div id="tx-error" class="error-msg"></div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" onclick="closeModal('transaction-modal')">キャンセル</button>
         <button type="submit" class="btn btn-primary">保存</button>
       </div>
     </form>

@@ -21,6 +21,7 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/assets', require('./routes/assets'));
 app.use('/api/income', require('./routes/income'));
 app.use('/api/expenses', require('./routes/expenses'));
+app.use('/api/transactions', require('./routes/transactions'));
 
 app.get('/api/dashboard', (req, res) => {
   if (!req.session.userId) return res.status(401).json({ error: '認証が必要です' });

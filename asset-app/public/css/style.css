@@ -291,6 +291,89 @@ body {
 }
 .total-value { font-size: 1.2rem; color: #ffd700; }
 
+/* ===== TRANSACTIONS ===== */
+.tx-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.month-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.month-label {
+  font-size: 1.1rem;
+  font-weight: 700;
+  min-width: 120px;
+  text-align: center;
+}
+.tx-type-filter { display: flex; gap: 8px; }
+
+.tx-summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.tx-sum-item {
+  border-radius: 10px;
+  padding: 14px 18px;
+  text-align: center;
+}
+.tx-sum-item.income  { background: #e8f5e9; }
+.tx-sum-item.expense { background: #ffebee; }
+.tx-sum-item.balance { background: #e3f2fd; }
+.tx-sum-label { font-size: 0.8rem; font-weight: 600; color: #666; display: block; margin-bottom: 4px; }
+.tx-sum-value { font-size: 1.1rem; font-weight: 700; }
+.tx-sum-item.income  .tx-sum-value { color: #2e7d32; }
+.tx-sum-item.expense .tx-sum-value { color: #c62828; }
+.tx-sum-item.balance .tx-sum-value { color: #1565c0; }
+
+.tx-card { border-left: 4px solid #e0e0e0; }
+.tx-card.income-card  { border-left-color: #4caf50; }
+.tx-card.expense-card { border-left-color: #f44336; }
+.tx-date { font-size: 0.75rem; color: #aaa; }
+.tx-amount-income  { color: #2e7d32; font-size: 1.1rem; font-weight: 700; white-space: nowrap; }
+.tx-amount-expense { color: #c62828; font-size: 1.1rem; font-weight: 700; white-space: nowrap; }
+
+.date-group-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #666;
+  background: #f5f5f5;
+  border-radius: 6px;
+  margin-top: 8px;
+}
+.day-summary { display: flex; gap: 8px; }
+.day-summary .inc { color: #2e7d32; }
+.day-summary .exp { color: #c62828; }
+
+/* Type toggle button */
+.type-toggle { display: flex; gap: 8px; }
+.type-btn {
+  flex: 1;
+  padding: 10px;
+  border: 1.5px solid #e0e0e0;
+  background: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+.type-btn.active.income-active  { background: #e8f5e9; border-color: #4caf50; color: #2e7d32; }
+.type-btn.active.expense-active { background: #ffebee; border-color: #f44336; color: #c62828; }
+.type-btn.active { background: #e8f5e9; border-color: #4caf50; color: #2e7d32; }
+
 /* ===== ANNUAL PREVIEW ===== */
 .annual-preview {
   background: #e8f5e9;

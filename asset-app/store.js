@@ -7,7 +7,7 @@ const dataDir = path.join(__dirname, 'data');
 
 if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
 
-const EMPTY = () => ({ users: [], assets: [], income_sources: [], expenses: [] });
+const EMPTY = () => ({ users: [], assets: [], income_sources: [], expenses: [], transactions: [] });
 
 function read() {
   if (!fs.existsSync(DATA_PATH)) return EMPTY();

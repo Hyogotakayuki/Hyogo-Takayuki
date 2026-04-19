@@ -2,9 +2,14 @@
 let allAssets = [];
 let allIncome = [];
 let allExpenses = [];
+let allTransactions = [];
 let currentAssetFilter = 'all';
 let currentExpenseFilter = 'all';
-let pendingDelete = null; // { type, id }
+let currentTxFilter = 'all';
+let currentTxYear = new Date().getFullYear();
+let currentTxMonth = new Date().getMonth() + 1;
+let currentTxType = 'income';
+let pendingDelete = null;
 let assetsChart = null;
 let expensesChart = null;
 
@@ -14,6 +19,11 @@ const FREQ_LABELS = { monthly: '毎月', bimonthly: '隔月', quarterly: '四半
 const FREQ_MULT = { monthly: 12, bimonthly: 6, quarterly: 4, annual: 1 };
 const EXPENSE_LABELS = { subscription: 'サブスク', food: '食費', utilities: '光熱費', socializing: '交際費', hygiene: '衛生費', stress_relief: '娯楽費', enrichment: '教養費', other: 'その他' };
 const EXPENSE_ICONS = { subscription: '📱', food: '🍽️', utilities: '💡', socializing: '🥂', hygiene: '🧴', stress_relief: '🎮', enrichment: '📚', other: '📝' };
+
+const TX_INCOME_CATEGORIES = { salary: '給与', business: '事業収入', investment: '投資収益', pension: '年金・障害年金', other_income: 'その他収入' };
+const TX_EXPENSE_CATEGORIES = { food: '食費', utilities: '光熱費', subscription: 'サブスク', socializing: '交際費', hygiene: '衛生費', stress_relief: '娯楽費', enrichment: '教養費', medical: '医療費', transport: '交通費', clothing: '被服費', other: 'その他' };
+const TX_INCOME_ICONS = { salary: '💼', business: '🏢', investment: '📈', pension: '👴', other_income: '💴' };
+const TX_EXPENSE_ICONS = { food: '🍽️', utilities: '💡', subscription: '📱', socializing: '🥂', hygiene: '🧴', stress_relief: '🎮', enrichment: '📚', medical: '🏥', transport: '🚃', clothing: '👔', other: '📝' };
 
 /* ===== FORMAT ===== */
 function formatYen(n) {
@@ -112,12 +122,18 @@ function showPage(name, linkEl) {
   page.classList.add('active');
   if (linkEl) linkEl.classList.add('active');
   if (name === 'dashboard') loadDashboard();
+  if (name === 'transactions') initTransactionsPage();
 }
 
 /* ===== LOAD ALL DATA ===== */
 async function loadAll() {
   await Promise.all([loadAssets(), loadIncome(), loadExpenses()]);
   loadDashboard();
+}
+
+function initTransactionsPage() {
+  updateTxMonthLabel();
+  loadTransactions();
 }
 
 /* ===== DASHBOARD ===== */
@@ -455,14 +471,15 @@ function openDelete(type, id) {
 async function confirmDelete() {
   if (!pendingDelete) return;
   const { type, id } = pendingDelete;
-  const urlMap = { asset: '/api/assets', income: '/api/income', expense: '/api/expenses' };
+  const urlMap = { asset: '/api/assets', income: '/api/income', expense: '/api/expenses', transaction: '/api/transactions' };
   try {
     await api('DELETE', `${urlMap[type]}/${id}`);
     closeModal('delete-modal');
     pendingDelete = null;
     if (type === 'asset') { await loadAssets(); }
     else if (type === 'income') { await loadIncome(); }
-    else { await loadExpenses(); }
+    else if (type === 'expense') { await loadExpenses(); }
+    else if (type === 'transaction') { loadTransactions(); }
     loadDashboard();
   } catch (err) {
     alert(err.message);
@@ -512,6 +529,161 @@ function escHtml(str) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
+}
+
+/* ===== TRANSACTIONS ===== */
+function updateTxMonthLabel() {
+  document.getElementById('tx-month-label').textContent = `${currentTxYear}年${currentTxMonth}月`;
+}
+
+function changeMonth(dir) {
+  currentTxMonth += dir;
+  if (currentTxMonth > 12) { currentTxMonth = 1; currentTxYear++; }
+  if (currentTxMonth < 1)  { currentTxMonth = 12; currentTxYear--; }
+  loadTransactions();
+}
+
+function filterTx(type, el) {
+  currentTxFilter = type;
+  document.querySelectorAll('#page-transactions .tx-type-filter .cat-tab').forEach(t => t.classList.remove('active'));
+  if (el) el.classList.add('active');
+  loadTransactions();
+}
+
+async function loadTransactions() {
+  updateTxMonthLabel();
+  try {
+    const data = await api('GET', `/api/transactions?year=${currentTxYear}&month=${currentTxMonth}`);
+    let txs = data.transactions;
+    if (currentTxFilter !== 'all') txs = txs.filter(t => t.type === currentTxFilter);
+
+    document.getElementById('tx-total-income').textContent = formatYen(data.totalIncome);
+    document.getElementById('tx-total-expense').textContent = formatYen(data.totalExpense);
+    const bal = document.getElementById('tx-balance');
+    bal.textContent = formatYen(data.balance);
+    bal.style.color = data.balance >= 0 ? '#1565c0' : '#c62828';
+
+    const list = document.getElementById('transactions-list');
+    if (!txs.length) {
+      list.innerHTML = `<div class="empty-state"><div class="empty-icon">📒</div><p>この月の記録がありません。「＋ 記録を追加」から入力してください。</p></div>`;
+      return;
+    }
+
+    // Group by date
+    const grouped = {};
+    txs.forEach(t => {
+      if (!grouped[t.date]) grouped[t.date] = [];
+      grouped[t.date].push(t);
+    });
+
+    list.innerHTML = Object.keys(grouped).sort((a,b) => b.localeCompare(a)).map(date => {
+      const dayTxs = grouped[date];
+      const dayIncome = dayTxs.filter(t=>t.type==='income').reduce((s,t)=>s+t.amount,0);
+      const dayExpense = dayTxs.filter(t=>t.type==='expense').reduce((s,t)=>s+t.amount,0);
+      return `
+        <div class="date-group-header">
+          <span>${formatDate(date)}</span>
+          <span class="day-summary">${dayIncome > 0 ? '<span class="inc">+'+formatYen(dayIncome)+'</span>' : ''}${dayExpense > 0 ? '<span class="exp">-'+formatYen(dayExpense)+'</span>' : ''}</span>
+        </div>
+        ${dayTxs.map(t => {
+          const isIncome = t.type === 'income';
+          const labels = isIncome ? TX_INCOME_CATEGORIES : TX_EXPENSE_CATEGORIES;
+          const icons = isIncome ? TX_INCOME_ICONS : TX_EXPENSE_ICONS;
+          return `
+          <div class="item-card tx-card ${isIncome ? 'income-card' : 'expense-card'}">
+            <div class="item-icon">${icons[t.category] || '💴'}</div>
+            <div class="item-info">
+              <div class="item-name">${escHtml(t.description || labels[t.category] || t.category)}</div>
+              <div class="item-meta">${labels[t.category] || t.category}</div>
+            </div>
+            <div class="${isIncome ? 'tx-amount-income' : 'tx-amount-expense'}">${isIncome ? '+' : '-'}${formatYen(t.amount)}</div>
+            <div class="item-actions">
+              <button class="btn btn-ghost btn-icon" onclick="openEditTransaction(${t.id})">編集</button>
+              <button class="btn btn-danger btn-icon" onclick="openDelete('transaction', ${t.id})">削除</button>
+            </div>
+          </div>`;
+        }).join('')}`;
+    }).join('');
+  } catch(e) { console.error(e); }
+}
+
+function formatDate(dateStr) {
+  const d = new Date(dateStr + 'T00:00:00');
+  const days = ['日','月','火','水','木','金','土'];
+  return `${d.getMonth()+1}月${d.getDate()}日（${days[d.getDay()]}）`;
+}
+
+function setTxType(type) {
+  currentTxType = type;
+  document.getElementById('tx-type').value = type;
+  document.getElementById('tx-type-income').classList.toggle('active', type === 'income');
+  document.getElementById('tx-type-expense').classList.toggle('active', type === 'expense');
+  document.getElementById('tx-type-income').classList.toggle('income-active', type === 'income');
+  document.getElementById('tx-type-expense').classList.toggle('expense-active', type === 'expense');
+  updateTxCategoryOptions(type);
+}
+
+function updateTxCategoryOptions(type) {
+  const cats = type === 'income' ? TX_INCOME_CATEGORIES : TX_EXPENSE_CATEGORIES;
+  const sel = document.getElementById('tx-category');
+  sel.innerHTML = '<option value="">選択してください</option>' +
+    Object.entries(cats).map(([v, l]) => `<option value="${v}">${l}</option>`).join('');
+}
+
+function resetTransactionModal() {
+  setTxType('income');
+  document.getElementById('tx-date').value = new Date().toISOString().split('T')[0];
+  document.getElementById('tx-id').value = '';
+  document.getElementById('transaction-modal-title').textContent = '収支を記録';
+}
+
+function openEditTransaction(id) {
+  const t = allTransactions.find(x => x.id === id);
+  if (!t) {
+    api('GET', `/api/transactions?year=${currentTxYear}&month=${currentTxMonth}`)
+      .then(data => {
+        const tx = data.transactions.find(x => x.id === id);
+        if (tx) populateTransactionModal(tx);
+      });
+    return;
+  }
+  populateTransactionModal(t);
+}
+
+function populateTransactionModal(t) {
+  document.getElementById('transaction-modal-title').textContent = '収支を編集';
+  document.getElementById('tx-id').value = t.id;
+  setTxType(t.type);
+  document.getElementById('tx-category').value = t.category;
+  document.getElementById('tx-amount').value = t.amount;
+  document.getElementById('tx-date').value = t.date;
+  document.getElementById('tx-description').value = t.description || '';
+  document.getElementById('tx-error').textContent = '';
+  openModal('transaction-modal');
+}
+
+async function handleTransactionSubmit(e) {
+  e.preventDefault();
+  const id = document.getElementById('tx-id').value;
+  const body = {
+    type: document.getElementById('tx-type').value,
+    category: document.getElementById('tx-category').value,
+    amount: document.getElementById('tx-amount').value,
+    date: document.getElementById('tx-date').value,
+    description: document.getElementById('tx-description').value
+  };
+  const errorEl = document.getElementById('tx-error');
+  try {
+    if (id) {
+      await api('PUT', `/api/transactions/${id}`, body);
+    } else {
+      await api('POST', '/api/transactions', body);
+    }
+    closeModal('transaction-modal');
+    loadTransactions();
+  } catch(err) {
+    errorEl.textContent = err.message;
+  }
 }
 
 /* ===== EVENT LISTENERS ===== */

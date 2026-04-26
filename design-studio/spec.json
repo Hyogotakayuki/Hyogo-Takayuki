@@ -1,0 +1,51 @@
+{
+  "name": "Design Studio",
+  "description": "ブラウザで動くビジュアルデザインツール。キャンバスに図形・テキスト・フリーハンド描画を配置し、レイヤー管理・アンドゥ・PNG/SVGエクスポートまで備えた本格的なデザイン作業環境を提供する。",
+  "target_users": "Webデザイナー、イラストレーター、アイデアをビジュアル化したい一般ユーザー",
+  "features": [
+    { "id": "F001", "name": "キャンバス", "description": "無限スクロール対応のHTML5 Canvasベースの描画エリア。ズーム・パン操作が可能。", "acceptance_criteria": ["キャンバスが表示される", "マウスホイールでズームできる", "スペース+ドラッグでパンできる"] },
+    { "id": "F002", "name": "選択ツール", "description": "オブジェクトをクリックして選択・移動・リサイズできる。", "acceptance_criteria": ["クリックで選択", "ドラッグで移動", "ハンドルでリサイズ"] },
+    { "id": "F003", "name": "図形ツール", "description": "矩形・楕円・直線を描ける。", "acceptance_criteria": ["矩形が描ける", "楕円が描ける", "直線が描ける"] },
+    { "id": "F004", "name": "ペンツール", "description": "フリーハンドで自由な線が描ける。", "acceptance_criteria": ["マウスダウンで描画開始", "マウスアップで描画終了", "滑らかな曲線"] },
+    { "id": "F005", "name": "テキストツール", "description": "キャンバス上にテキストを配置・編集できる。", "acceptance_criteria": ["クリックでテキスト入力", "フォントサイズ変更可能", "フォントファミリー選択可能"] },
+    { "id": "F006", "name": "塗りつぶし・ストローク設定", "description": "選択オブジェクトの塗りと枠の色・太さを変更できる。", "acceptance_criteria": ["カラーピッカーで色選択", "ストローク幅の変更", "不透明度の変更"] },
+    { "id": "F007", "name": "レイヤーパネル", "description": "オブジェクトをレイヤーとして管理。表示/非表示・順序変更が可能。", "acceptance_criteria": ["レイヤー一覧が表示される", "クリックで選択", "ドラッグで順序変更", "目のアイコンで表示切替"] },
+    { "id": "F008", "name": "アンドゥ・リドゥ", "description": "Ctrl+Z / Ctrl+Shift+Z で操作を取り消し・やり直しできる。", "acceptance_criteria": ["Ctrl+Zで1つ戻る", "Ctrl+Shift+Zで1つ進む", "最大50ステップ"] },
+    { "id": "F009", "name": "PNGエクスポート", "description": "キャンバスの内容をPNG画像としてダウンロードできる。", "acceptance_criteria": ["エクスポートボタンでダウンロード", "背景透過オプション"] },
+    { "id": "F010", "name": "SVGエクスポート", "description": "図形とテキストをSVGとして出力できる。", "acceptance_criteria": ["SVGファイルがダウンロードされる"] },
+    { "id": "F011", "name": "テンプレート", "description": "A4・名刺・SNSバナーなどのプリセットサイズでキャンバスを開始できる。", "acceptance_criteria": ["テンプレート選択UI", "選択後キャンバスサイズが変わる"] },
+    { "id": "F012", "name": "キーボードショートカット", "description": "よく使う操作をキーボードで実行できる。", "acceptance_criteria": ["V=選択, P=ペン, R=矩形, E=楕円, T=テキスト", "Delete=削除", "Ctrl+A=全選択"] }
+  ],
+  "sprints": [
+    {
+      "number": 1,
+      "goal": "キャンバスと基本描画ツールで最低限動くMVP",
+      "tasks": [
+        { "id": "T101", "feature_id": "F001", "description": "HTML/CSS/JSでアプリの骨格とキャンバスを作成" },
+        { "id": "T102", "feature_id": "F003", "description": "矩形・楕円・直線ツールの実装" },
+        { "id": "T103", "feature_id": "F004", "description": "フリーハンドペンツールの実装" },
+        { "id": "T104", "feature_id": "F006", "description": "塗りとストロークのカラーピッカーUI" }
+      ]
+    },
+    {
+      "number": 2,
+      "goal": "選択・編集・レイヤー・アンドゥで本格的なデザイン操作を実現",
+      "tasks": [
+        { "id": "T201", "feature_id": "F002", "description": "選択ツール：クリック選択・移動・リサイズハンドル" },
+        { "id": "T202", "feature_id": "F005", "description": "テキストツールとプロパティパネル" },
+        { "id": "T203", "feature_id": "F007", "description": "レイヤーパネルの実装" },
+        { "id": "T204", "feature_id": "F008", "description": "アンドゥ・リドゥ（コマンドパターン）" }
+      ]
+    },
+    {
+      "number": 3,
+      "goal": "エクスポート・テンプレート・ショートカットで完成品に仕上げる",
+      "tasks": [
+        { "id": "T301", "feature_id": "F009", "description": "PNG/SVGエクスポート機能" },
+        { "id": "T302", "feature_id": "F011", "description": "テンプレート選択ダイアログ" },
+        { "id": "T303", "feature_id": "F001", "description": "ズーム・パン操作の改善" },
+        { "id": "T304", "feature_id": "F012", "description": "キーボードショートカット全実装" }
+      ]
+    }
+  ]
+}
